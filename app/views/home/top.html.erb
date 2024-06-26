@@ -1,0 +1,15 @@
+
+<div class="imagesflex">
+  <%= image_tag @latest_post[0].image1, class:"image" if @latest_post[0].image1.present? %>
+  <%= image_tag @latest_post[0].image2,class:"image" if @latest_post[0].image2.present? %>
+  <%= image_tag @latest_post[0].image3,class:"image" if @latest_post[0].image3.present? %>
+  <%= image_tag @latest_post[0].image4,class:"image" if @latest_post[0].image4.present? %>
+  <%= image_tag @latest_post[0].image5,class:"image" if @latest_post[0].image5.present? %>
+  <%= image_tag @latest_post[0].image6, class:"image" if @latest_post[0].image6.present? %>
+  <%= image_tag @latest_post[0].image7,class:"image" if @latest_post[0].image7.present? %>
+  <%= image_tag @latest_post[0].image8,class:"image" if @latest_post[0].image8.present? %>
+  <%= image_tag @latest_post[0].image9,class:"image" if @latest_post[0].image9.present? %>
+  <%= image_tag @latest_post[0].image10,class:"image" if @latest_post[0].image10.present? %>
+</div>
+
+<p><%= @timestamp %></p>

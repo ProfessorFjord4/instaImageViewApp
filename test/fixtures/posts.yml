@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  permalink: MyString
+  has_children: 1
+  post_datetime: 2024-05-29 14:41:38
+
+two:
+  permalink: MyString
+  has_children: 1
+  post_datetime: 2024-05-29 14:41:38
