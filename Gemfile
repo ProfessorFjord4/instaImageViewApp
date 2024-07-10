@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "dotenv"
+
+gem 'whenever', :require => false
