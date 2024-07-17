@@ -3,27 +3,35 @@ class HomeController < ApplicationController
   require 'json'
 
   def top
-    @timestamp = insta_latest_timestamp_check("yomiuri.giants")
-    database_latest_data = Post.order(post_datetime: :desc).limit(1)
+    insta_accountname = "yomiuri.giants"
+    @timestamp = insta_latest_timestamp_check(insta_accountname)
+    database_latest_data = Post.order(updated_at: :desc).limit(1)
     database_latest_post_id = 0
-    database_latest_post_datetime = DateTime.new(2000,1,1)
     database_latest_data.each do |data|
       database_latest_post_id = data.id
-      database_latest_post_datetime = data.post_datetime
-      puts(database_latest_post_datetime)
+    end
+    database_account_latest_data = Post.where(account_name: insta_accountname).order(updated_at: :desc).limit(1)
+    database_latest_post_datetime = DateTime.new(2000,1,1)
+    if database_account_latest_data.present?
+      database_account_latest_data.each do |data|
+        database_latest_post_datetime = data.post_datetime
+        puts(database_latest_post_datetime)
+      end
     end
     if database_latest_post_datetime == @timestamp
-      print("latest_post_is_updated")
-      @latest_post = Image.order(updated_at: :desc).limit(1)
+      puts("latest_post_is_updated")
+      account_latest_post = Post.where(account_name: insta_accountname).order(updated_at: :desc).limit(1)
+      @latest_post = Image.where(postid: account_latest_post[0].id).limit(1)
+      # @latest_post = Image.order(updated_at: :desc).limit(1)
     else
-      latest_data = insta_images_get("yomiuri.giants")
+      latest_data = insta_images_get(insta_accountname)
       permalink = latest_data["permalink"]
       post_datetime = latest_data["timestamp"]
       if latest_data.has_key?("children")
         latest_images = latest_data["children"]["data"]
         has_children = 1
         database_latest_post_id += 1
-        post = Post.new(id: database_latest_post_id,permalink: permalink, post_datetime: post_datetime, has_children: has_children)
+        post = Post.new(id: database_latest_post_id,permalink: permalink, post_datetime: post_datetime, has_children: has_children, account_name: insta_accountname)
         post.save
         images_num = latest_images.length
         10.times do |i|
@@ -40,7 +48,7 @@ class HomeController < ApplicationController
       else
         has_children = 0
         database_latest_post_id += 1
-        post = Post.new(id: database_latest_post_id,permalink: permalink, post_datetime: post_datetime, has_children: has_children)
+        post = Post.new(id: database_latest_post_id,permalink: permalink, post_datetime: post_datetime, has_children: has_children, account_name: insta_accountname)
         post.save
         latest_image_not_children = latest_data["media_url"]
         image = Image.new(postid: database_latest_post_id,image1: latest_image_not_children)
