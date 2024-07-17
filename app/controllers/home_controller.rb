@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   require 'json'
 
   def top
-    insta_accountname = "yomiuri.giants"
+    insta_accountname = "shoheiohtani"
     @timestamp = insta_latest_timestamp_check(insta_accountname)
     database_latest_data = Post.order(updated_at: :desc).limit(1)
     database_latest_post_id = 0
@@ -37,11 +37,13 @@ class HomeController < ApplicationController
         10.times do |i|
           if i < images_num
             instance_variable_set('@image' + (i + 1).to_s, latest_images[i]["media_url"])
+            instance_variable_set('@mediatype' + (i + 1).to_s, latest_images[i]["media_type"])
           else
             instance_variable_set('@image' + (i + 1).to_s, nil)
+            instance_variable_set('@mediatype' + (i + 1).to_s, nil)
           end
         end
-        image = Image.new(postid: database_latest_post_id,image1: @image1, image2: @image2, image3: @image3, image4: @image4, image5: @image5, image6: @image6, image7: @image7, image8: @image8, image9: @image9, image10: @image10)
+        image = Image.new(postid: database_latest_post_id,image1: @image1, image2: @image2, image3: @image3, image4: @image4, image5: @image5, image6: @image6, image7: @image7, image8: @image8, image9: @image9, image10: @image10, mediatype1: @mediatype1, mediatype2: @mediatype2, mediatype3: @mediatype3, mediatype4: @mediatype4, mediatype5: @mediatype5, mediatype6: @mediatype6, mediatype7: @mediatype7, mediatype8: @mediatype8, mediatype9: @mediatype9, mediatype10: @mediatype10)
         image.save
         @latest_post = Image.order(updated_at: :desc).limit(1)
         @latest_post
@@ -51,7 +53,8 @@ class HomeController < ApplicationController
         post = Post.new(id: database_latest_post_id,permalink: permalink, post_datetime: post_datetime, has_children: has_children, account_name: insta_accountname)
         post.save
         latest_image_not_children = latest_data["media_url"]
-        image = Image.new(postid: database_latest_post_id,image1: latest_image_not_children)
+        latest_mediatype_not_children = latest_data["media_type"]
+        image = Image.new(postid: database_latest_post_id,image1: latest_image_not_children, mediatype1:latest_mediatype_not_children)
         image.save
         @latest_post = Image.order(updated_at: :desc).limit(1)
         @latest_post

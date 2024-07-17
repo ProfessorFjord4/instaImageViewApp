@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_10_044517) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_040828) do
   create_table "images", force: :cascade do |t|
     t.integer "postid"
     t.string "image1"
@@ -25,6 +25,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_10_044517) do
     t.string "image10"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "mediatype1"
+    t.string "mediatype2"
+    t.string "mediatype3"
+    t.string "mediatype4"
+    t.string "mediatype5"
+    t.string "mediatype6"
+    t.string "mediatype7"
+    t.string "mediatype8"
+    t.string "mediatype9"
+    t.string "mediatype10"
   end
 
   create_table "posts", force: :cascade do |t|

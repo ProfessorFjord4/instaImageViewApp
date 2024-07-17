@@ -1,17 +1,85 @@
 
 <div class="imagesflex">
-  <%= image_tag @latest_post[0].image1, class:"image" if @latest_post[0].image1.present? %>
-  <%= image_tag @latest_post[0].image2,class:"image" if @latest_post[0].image2.present? %>
-  <%= image_tag @latest_post[0].image3,class:"image" if @latest_post[0].image3.present? %>
-  <%= image_tag @latest_post[0].image4,class:"image" if @latest_post[0].image4.present? %>
-  <%= image_tag @latest_post[0].image5,class:"image" if @latest_post[0].image5.present? %>
-  <%= image_tag @latest_post[0].image6, class:"image" if @latest_post[0].image6.present? %>
-  <%= image_tag @latest_post[0].image7,class:"image" if @latest_post[0].image7.present? %>
-  <%= image_tag @latest_post[0].image8,class:"image" if @latest_post[0].image8.present? %>
-  <%= image_tag @latest_post[0].image9,class:"image" if @latest_post[0].image9.present? %>
-  <%= image_tag @latest_post[0].image10,class:"image" if @latest_post[0].image10.present? %>
+  <% if @latest_post[0].image1.present? %>
+    <% if @latest_post[0].mediatype1 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image1, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image1, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image2.present? %>
+    <% if @latest_post[0].mediatype2 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image2, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image2, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image3.present? %>
+    <% if @latest_post[0].mediatype3 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image3, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image3, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+
+  <% if @latest_post[0].image4.present? %>
+    <% if @latest_post[0].mediatype4 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image4, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image4, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image5.present? %>
+    <% if @latest_post[0].mediatype5 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image5, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image5, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image6.present? %>
+    <% if @latest_post[0].mediatype6 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image6, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image6, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image7.present? %>
+    <% if @latest_post[0].mediatype7 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image7, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image7, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image8.present? %>
+    <% if @latest_post[0].mediatype8 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image8, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image8, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image9.present? %>
+    <% if @latest_post[0].mediatype9 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image9, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image9, class:"image", controls: true %>
+    <% end %>
+  <% end %>
+
+  <% if @latest_post[0].image10.present? %>
+    <% if @latest_post[0].mediatype10 == "IMAGE" %>
+      <%= image_tag @latest_post[0].image10, class:"image" %>
+    <% else %>
+      <%= video_tag @latest_post[0].image10, class:"image", controls: true %>
+    <% end %>
+  <% end %>
 </div>
 
 <p><%= @timestamp %></p>
-
-<%# <video src="" controls></video> %>
