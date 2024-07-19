@@ -87,7 +87,7 @@ class HomeController < ApplicationController
     instagram_url = "https://graph.facebook.com/v19.0/"
     business_id = ENV["INSTAGRAM_BUSINESS_ID"]
     access_token = ENV["INSTAGRAM_ACCESS_TOKEN"]
-    fields = "{media.limit(1){media_url,media_type,permalink,timestamp,children{media_url}}}"
+    fields = "{media.limit(1){media_url,media_type,permalink,timestamp,children{media_url,media_type}}}"
     # fields = "{media.limit(1){thumbnail_url,media_url,media_type,permalink,timestamp,children{media_type,media_url,permalink}}}"
 
     url = instagram_url + business_id + "?fields=business_discovery.username(" + account_name + ")" + fields + "&access_token=" + access_token
