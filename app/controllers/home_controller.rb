@@ -2,8 +2,12 @@ class HomeController < ApplicationController
   require 'net/http'
   require 'json'
 
-  def top
-    insta_accountname = "shoheiohtani"
+  def top(insta_accountname = "yomiuri.giants")
+    puts insta_accountname
+    if params[:account_name].present?
+      insta_accountname = params[:account_name]
+    end
+    puts insta_accountname
     @timestamp = insta_latest_timestamp_check(insta_accountname)
     database_latest_data = Post.order(updated_at: :desc).limit(1)
     database_latest_post_id = 0
@@ -18,7 +22,8 @@ class HomeController < ApplicationController
         puts(database_latest_post_datetime)
       end
     end
-    if database_latest_post_datetime == @timestamp
+    nowtime = Time.now.utc
+    if database_latest_post_datetime == @timestamp and (nowtime - 5.days) <= database_latest_post_datetime
       puts("latest_post_is_updated")
       account_latest_post = Post.where(account_name: insta_accountname).order(updated_at: :desc).limit(1)
       @latest_post = Image.where(postid: account_latest_post[0].id).limit(1)
@@ -100,5 +105,10 @@ class HomeController < ApplicationController
     recent_data = json_response_body["business_discovery"]['media']["data"][0]
     recent_data
   end
+
+  # def account_change
+  #   account_name = params[:account_name]
+  #   top(account_name)
+  # end
 end
 

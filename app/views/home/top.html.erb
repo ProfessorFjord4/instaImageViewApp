@@ -1,3 +1,6 @@
+<% flash.each do |message_type, message| %>
+  <%= message %>
+<% end %>
 
 <div class="imagesflex">
   <% if @latest_post[0].image1.present? %>
@@ -82,4 +85,10 @@
   <% end %>
 </div>
 
-<p><%= @timestamp %></p>
+<%= form_with url: :account_change, local: true, data: {turbo: false} do |form| %>
+  <div class="text-center">
+    <div>Instagramアカウント名</div>
+    <%= form.text_field :account_name %>
+    <%= form.submit "送信" %>
+  </div>
+<% end %>
