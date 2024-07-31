@@ -1,5 +1,5 @@
 <% flash.each do |message_type, message| %>
-  <%= message %>
+  <div class="flash_message"><%= message %></div>
 <% end %>
 
 <div class="imagesflex">
@@ -92,3 +92,7 @@
     <%= form.submit "送信" %>
   </div>
 <% end %>
+
+<div class="notice">
+  <p>注意：一般のアカウントは表示できません。公式アカウントのみ表示できます。</p>
+</div>

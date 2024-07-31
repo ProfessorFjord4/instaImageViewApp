@@ -25,3 +25,14 @@
   object-fit: cover;
   margin: 10px;
  }
+
+ .flash_message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+ }
+
+ .notice {
+  text-align: center;
+  margin-top: 10pt;
+ }
